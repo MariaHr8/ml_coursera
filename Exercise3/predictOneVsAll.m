@@ -31,7 +31,8 @@ X = [ones(m, 1) X];
 %       
 
 
-
+predict = sigmoid(X*all_theta'); % 5000 * 401 times 401 * 10
+[~, p] = max(predict, [], 2);
 
 
 
