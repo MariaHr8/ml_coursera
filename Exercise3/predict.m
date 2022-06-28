@@ -8,7 +8,7 @@ m = size(X, 1);
 num_labels = size(Theta2, 1);
 
 % You need to return the following variables correctly 
-p = zeros(size(X, 1), 1);
+p = zeros(m, 1);
 
 % ====================== YOUR CODE HERE ======================
 % Instructions: Complete the following code to make predictions using
@@ -23,14 +23,19 @@ p = zeros(size(X, 1), 1);
 
 X = [ones(m,1) X];
 
-% Stage 1
+%layer1
 t1 = sigmoid(X * Theta1');
-t1 = [ones(m, 1) t1];
+t1 = [ones(m, 1), t1];
 
-% Stage 2
+%layer2
 t2 = sigmoid(t1 * Theta2');
-
+ 
 [~, p] = max(t2, [], 2);
+
+
+
+
+
 
 
 % =========================================================================
