@@ -15,7 +15,10 @@ X_poly = zeros(numel(X), p);
 %
 % 
 
-
+for i = 1:p 
+    % ith column of X_poly = the first column of X to the power of i
+    X_poly(:,i) = X(:,1) .^ i;
+end
 
 
 
