@@ -23,9 +23,39 @@ sigma = 0.3;
 %        mean(double(predictions ~= yval))
 %
 
+C_values = [0 0.001 0.003 0.01 0.03 0.1 0.3 1 3 10]'; % vertical vector 1 x m
+sigma_values = [0 0.001 0.003 0.01 0.03 0.1 0.3 1 3 10]'; % vertical vector 1 x m
 
+prediction_error = zeros(length(C_values), length(sigma_values));
+result = zeros(length(C_values)+length(sigma_values),3);
+row = 1;
 
+for i = 1:length(C_values)
+    for j = 1:length(sigma_values)
+        	
+        C_test = C_values(i);
+        sigma_test = sigma_values(j);
 
+        % Train the SVM
+        model = svmTrain(X, y, C_test, @(x1, x2) gaussianKernel(x1, x2, sigma_test));
+
+        % predictions for the cross validation set
+        predictions = svmPredict(model, Xval);
+
+        % error 
+        prediction_error(i,j) = mean(double(predictions ~= yval));
+
+        result(row,:) = [prediction_error(i,j), C_test, sigma_test];
+        row = row + 1;
+    end
+end
+
+ % Sorting prediction_error in ascending order
+  sorted_result = sortrows(result, 1);
+  
+  % C and sigma corresponding to min(prediction_error)
+  C = sorted_result(1,2);
+  sigma = sorted_result(1,3);
 
 
 
