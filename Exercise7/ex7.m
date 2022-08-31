@@ -7,9 +7,7 @@
 %  This file contains code that helps you get started on the
 %  exercise. You will need to complete the following functions:
 %
-%     pca.m
-%     projectData.m
-%     recoverData.m
+%     
 %     computeCentroids.m
 %     findClosestCentroids.m
 %     kMeansInitCentroids.m
