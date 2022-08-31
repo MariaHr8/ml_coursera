@@ -26,7 +26,24 @@ centroids = zeros(K, n);
 % Note: You can use a for-loop over the centroids to compute this.
 %
 
+% Get set of examples belonging to Ks vectors
 
+
+
+for i = 1:K 
+    num = 0;
+    total = zeros(1, n);
+
+    for j = 1:m
+        if (idx(j) == i)
+            num = num + 1;
+            total = total + X(j,:);
+        endif
+    end
+
+    centroids(i,:) = total .* (1/num);
+
+end
 
 
 
